@@ -1,4 +1,4 @@
-import { Globe, Briefcase, Camera, Twitter, Heart } from "lucide-react";
+import { Globe, Briefcase, Camera, Mail, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[80%] h-24 bg-blue-600/20 blur-3xl -z-10 rounded-full"></div>
       
       <div className="flex gap-6 justify-center mb-6">
-        {[<Globe className="w-5 h-5"/>, <Briefcase className="w-5 h-5"/>, <Camera className="w-5 h-5"/>, <Twitter className="w-5 h-5"/>].map((icon, idx) => (
+        {[<Globe className="w-5 h-5"/>, <Briefcase className="w-5 h-5"/>, <Camera className="w-5 h-5"/>, <Mail className="w-5 h-5"/>].map((icon, idx) => (
           <a
             key={idx}
             href="#"
