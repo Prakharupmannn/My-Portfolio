@@ -53,28 +53,57 @@ export default function Portfolio() {
           {filteredItems.map((item) => (
             <motion.div
               layout
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+              exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4 }}
               key={item.id}
-              className="group glass-panel rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-shadow duration-500 border border-white/10 relative"
+              className="group glass-panel rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 border border-white/10 flex flex-col bg-white/[0.02]"
             >
-              <div className="relative h-64 overflow-hidden">
+              {/* Image Container */}
+              <div className="relative h-52 overflow-hidden">
                 <div className="absolute inset-0 bg-[#040b14] animate-pulse -z-10"></div>
-                <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-700">
-                   <ImageIcon className="w-12 h-12 text-gray-600" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#040b14] to-transparent opacity-80 decoration-0"></div>
+                {item.img ? (
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl group-hover:scale-105 transition-transform duration-700">
+                     <ImageIcon className="w-12 h-12 text-gray-600" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#040b14]/50 to-transparent"></div>
+                <span className="absolute top-4 right-4 text-[10px] px-3 py-1 bg-blue-600/90 text-white rounded-full font-bold uppercase tracking-wider backdrop-blur-sm border border-blue-400/30 shadow-md">
+                  {item.category}
+                </span>
               </div>
               
-              <div className="absolute bottom-0 w-full p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-blue-400 text-sm font-semibold mb-1 uppercase tracking-wider">{item.category}</p>
-                <h3 className="font-bold text-2xl text-white">{item.title}</h3>
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  <button className="flex items-center gap-2 text-sm text-gray-300 hover:text-white">
-                    View Project <ExternalLink className="w-4 h-4 text-blue-400" />
-                  </button>
+              {/* Text Container */}
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-bold text-xl text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">{item.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                    {item.description}
+                  </p>
+                </div>
+                <div>
+                  {item.tags && (
+                    <div className="flex gap-2 flex-wrap mb-4">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="text-[10px] px-2.5 py-1 bg-white/5 text-gray-300 rounded-full border border-white/5">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <a 
+                    href={item.demoUrl || "#"} 
+                    className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-semibold group-hover:underline"
+                  >
+                    View Project <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             </motion.div>
